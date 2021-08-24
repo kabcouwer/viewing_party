@@ -19,7 +19,7 @@ RSpec.describe 'Welcome Page' do
 
     click_link('New to viewing party? Register here!')
 
-    expect(current_path).to eq(new_user_path)
+    expect(current_path).to eq(registration_path)
   end
 
   it 'has log in button' do
@@ -30,12 +30,3 @@ RSpec.describe 'Welcome Page' do
     expect(current_path).to eq(root_path)
   end
 end
-
-# When a user visits the root path they should be on the welcome page which includes:
-#
-#  Welcome message
-#  Brief description of the application
-#  Button to Log in
-#  Link to Registration
-# Details: Implement basic auth in the application allowing a user to log in with an email and password.
-# The password should be stored in the database using bcrypt.
