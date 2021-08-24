@@ -5,7 +5,7 @@ class CreateParties < ActiveRecord::Migration[5.2]
       t.integer :duration
       t.datetime :day
       t.datetime :start_time
-      t.references :user, foreign_key: true
+      t.references :party_host, foreign_key: { to_table: :users }
 
       t.timestamps
     end
