@@ -16,9 +16,13 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootsnap'
 gem 'jbuilder', '~> 2.5'
 
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+
 group :development, :test do
   gem 'pry'
   gem 'travis'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 group :development do
