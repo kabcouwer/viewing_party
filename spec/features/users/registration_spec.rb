@@ -10,15 +10,16 @@ RSpec.describe 'Registration Page' do
     email = 'DirtyGertie03@doggo.com'
     password = 'RainbowRoll4lyfe'
 
-    fill_in :username, with: username
-    fill_in :email, with: email
-    fill_in :password, with: password
-    fill_in :password_confirmation, with: password
+    fill_in 'user[username]', with: username
+    fill_in 'user[email]', with: email
+    fill_in 'user[password]', with: password
+    fill_in 'user[password_confirmation]', with: password
 
     click_on 'Register'
 
     expect(current_path).to eq(dashboard_path)
-    expect(page).to have_content("Weclome, #{username}")
+    # save_and_open_page
+    expect(page).to have_content("Weclome, #{username.downcase}")
   end
 end
 
