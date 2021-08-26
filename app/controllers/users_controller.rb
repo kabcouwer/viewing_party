@@ -6,17 +6,15 @@ class UsersController < ApplicationController
   def create
     user = user_params
     user[:username] = user[:username].downcase
+    user[:email] = user[:email].downcase
     new_user = User.create(user)
-    flash[:success] = "Weclome, #{new_user.username}"
-    redirect_to dashboard_path
-  end
-
-  def login
-    redirect_to root_path
-  end
-
-  def dashboard
-    
+    if new_user.save
+      flash[:success] = "Welcome, #{new_user.username}"
+      redirect_to dashboard_path
+    else
+      flash[:error] = new_user.errors.full_messages.to_sentence
+      redirect_to registration_path
+    end
   end
 
   private

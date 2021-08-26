@@ -22,11 +22,9 @@ RSpec.describe 'Welcome Page' do
     expect(current_path).to eq(registration_path)
   end
 
-  it 'has log in button' do
+  it 'has email and password fields and a log in button' do
+    expect(page).to have_field('email')
+    expect(page).to have_field('password')
     expect(page).to have_button('Log In')
-
-    click_button('Log In')
-
-    expect(current_path).to eq(root_path)
   end
 end
