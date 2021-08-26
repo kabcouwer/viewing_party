@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootsnap'
 gem 'jbuilder', '~> 2.5'
 gem 'faraday'
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
