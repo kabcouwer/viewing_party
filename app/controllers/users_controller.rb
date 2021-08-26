@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome, #{new_user.username}"
       redirect_to dashboard_path
     else
-      flash[:error] = 'Sorry, your credentials are invalid. Try Again.'
+      flash[:error] = new_user.errors.full_messages.to_sentence
       redirect_to registration_path
     end
   end

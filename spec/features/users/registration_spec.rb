@@ -37,7 +37,7 @@ RSpec.describe 'Registration Page' do
       click_on 'Register'
 
       expect(current_path).to eq(registration_path)
-      expect(page).to have_content('Sorry, your credentials are invalid. Try Again.')
+      expect(page).to have_content("Email can't be blank, Username can't be blank, and Password can't be blank")
       expect(page).to have_field('user[username]')
       expect(page).to have_field('user[email]')
       expect(page).to have_field('user[password]')
@@ -54,7 +54,7 @@ RSpec.describe 'Registration Page' do
       click_on 'Register'
 
       expect(current_path).to eq(registration_path)
-      expect(page).to have_content('Sorry, your credentials are invalid. Try Again.')
+      expect(page).to have_content("Password confirmation doesn't match Password")
       expect(page).to have_field('user[username]')
       expect(page).to have_field('user[email]')
       expect(page).to have_field('user[password]')
@@ -76,7 +76,7 @@ RSpec.describe 'Registration Page' do
       click_on 'Register'
 
       expect(current_path).to eq(registration_path)
-      expect(page).to have_content('Sorry, your credentials are invalid. Try Again.')
+      expect(page).to have_content('Username has already been taken')
       expect(page).to have_field('user[username]')
       expect(page).to have_field('user[email]')
       expect(page).to have_field('user[password]')
@@ -98,7 +98,29 @@ RSpec.describe 'Registration Page' do
       click_on 'Register'
 
       expect(current_path).to eq(registration_path)
-      expect(page).to have_content('Sorry, your credentials are invalid. Try Again.')
+      expect(page).to have_content('Email has already been taken')
+      expect(page).to have_field('user[username]')
+      expect(page).to have_field('user[email]')
+      expect(page).to have_field('user[password]')
+      expect(page).to have_field('user[password_confirmation]')
+      expect(page).to have_button('Register')
+    end
+
+    it 'cannot register a new user with already taken email - edgecase' do
+      taken_user = User.create!(email: @email,
+                          username: @username,
+                          password: @password,
+                          password_confirmation: @password
+                        )
+      fill_in 'user[username]', with: 'random1234'
+      fill_in 'user[email]', with: 'dirtygertie03@doggo.com'
+      fill_in 'user[password]', with: 'password'
+      fill_in 'user[password_confirmation]', with: 'password'
+
+      click_on 'Register'
+
+      expect(current_path).to eq(registration_path)
+      expect(page).to have_content('Email has already been taken')
       expect(page).to have_field('user[username]')
       expect(page).to have_field('user[email]')
       expect(page).to have_field('user[password]')
