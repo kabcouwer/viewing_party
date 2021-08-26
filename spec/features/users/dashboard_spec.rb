@@ -12,10 +12,10 @@ RSpec.describe 'User Dashboard Page' do
     @user7 = create(:user)
 
     @friendship1 = create(:friendship, user: @user1, friend: @user2)
-    @friendship1 = create(:friendship, user: @user1, friend: @user3)
-    @friendship1 = create(:friendship, user: @user1, friend: @user4)
-    @friendship1 = create(:friendship, user: @user1, friend: @user5)
-    @friendship1 = create(:friendship, user: @user2, friend: @user6)
+    @friendship2 = create(:friendship, user: @user1, friend: @user3)
+    @friendship3 = create(:friendship, user: @user1, friend: @user4)
+    @friendship4 = create(:friendship, user: @user1, friend: @user5)
+    @friendship5 = create(:friendship, user: @user2, friend: @user6)
 
     visit root_path
 
