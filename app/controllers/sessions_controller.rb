@@ -4,13 +4,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    found_user = User.find_by(email: params[:email])
-    if found_user.authenticate(params[:password])
+    found_user = User.find_by(email: params[:email].downcase)
+    if found_user && found_user.authenticate(params[:password])
       session[:user_id] = found_user.id
       flash[:success] = "Welcome, #{found_user.username}!"
       redirect_to dashboard_path
     else
-      flash[:error] = "Sorry, your credentials are bad."
+      flash[:error] = 'Sorry, your credentials are invalid. Try Again.'
       render :new
     end
   end
