@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  validates :email, presence: true, uniqueness: true
-  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
   # is validates password behind the scenes magic
   # for password + password confirmation?
 
