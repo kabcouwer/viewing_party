@@ -8,8 +8,13 @@ class UsersController < ApplicationController
     user[:username] = user[:username].downcase
     user[:email] = user[:email].downcase
     new_user = User.create(user)
-    flash[:success] = "Welcome, #{new_user.username}"
-    redirect_to dashboard_path
+    if new_user.save
+      flash[:success] = "Welcome, #{new_user.username}"
+      redirect_to dashboard_path
+    else
+      flash[:error] = 'Sorry, your credentials are invalid. Try Again.'
+      redirect_to registration_path
+    end
   end
 
   private
