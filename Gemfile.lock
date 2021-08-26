@@ -48,7 +48,7 @@ GEM
     ast (2.4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.7.7)
+    bootsnap (1.8.0)
       msgpack (~> 1.0)
     builder (3.2.4)
     capybara (3.35.3)
@@ -208,7 +208,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (1.19.1)
+    rubocop (1.20.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -288,9 +288,9 @@ DEPENDENCIES
   bootsnap
   capybara
   coffee-rails (~> 4.2)
-  faraday
   factory_bot_rails
   faker
+  faraday
   jbuilder (~> 2.5)
   launchy
   listen (>= 3.0.5, < 3.2)

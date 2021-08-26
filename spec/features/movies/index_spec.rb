@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe "Movies Index Page" do
   describe "top rated movies" do
     before :each do
-      @user = User.create!(email: 'DirtyGertie03@doggo.com', username: 'DirtyGertie03', password: 'RainbowRoll4lyfe')
+      @user = create(:user)
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
       visit movies_path #placeholder until routing is determined
 
       # add stub details
