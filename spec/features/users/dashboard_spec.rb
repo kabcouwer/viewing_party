@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'User Dashboard Page' do
   before :each do
-    # create_factories
     @user1 = create(:user)
     @user2 = create(:user)
     @user3 = create(:user)
