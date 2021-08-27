@@ -29,6 +29,9 @@ RSpec.describe 'Welcome Page' do
   end
 
   it 'returns json data' do
-    movies = MovieService.top_rated_movies
+    # movies = MovieService.top_rated_movies
+    visit movies_path
+    # save_and_open_page
+    movies = MoviesFacade.top_rated
   end
 end
