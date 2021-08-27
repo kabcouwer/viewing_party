@@ -6,5 +6,6 @@ class Movie
     @title = data[:title]
     @rating = data[:vote_average]
     @id = data[:id]
+    # @run_time =
   end
 end
