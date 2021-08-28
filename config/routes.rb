@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
 
+  resources :friendships, only: [:new, :create]
+
   get '/movies', to: 'movies#index'
 end
