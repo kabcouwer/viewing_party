@@ -1,8 +1,8 @@
 class MovieService
-  #ideally refactor at some point
+  # ideally refactor at some point
   def self.top_rated_movies
-    page_1_response = conn.get("/3/movie/top_rated?&page=1")
-    page_2_response = conn.get("/3/movie/top_rated?&page=2")
+    page_1_response = conn.get('/3/movie/top_rated?&page=1')
+    page_2_response = conn.get('/3/movie/top_rated?&page=2')
     # moving this to a helper method to user with various methods/endpoints
     # body = JSON.parse(response.body, symbolize_name: true)
     page_1_body = parse_json(page_1_response)

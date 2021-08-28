@@ -3,6 +3,5 @@ class MoviesController < ApplicationController
     @top_rated = MoviesFacade.top_rated
   end
 
-  def show
-  end
+  def show; end
 end
