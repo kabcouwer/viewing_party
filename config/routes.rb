@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
 
   get 'dashboard', to: 'dashboard#index'
+
+  resources :friendships, only: [:new, :create]
+
+  get '/movies', to: 'movies#index'
 end

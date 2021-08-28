@@ -1,5 +1,11 @@
+<h2>Search by movie title:</h2>
 <%= form_with url: movies_path, method: :get, local: true do |form| %>
   <%= form.label :movie_search %>
   <%= form.text_field :movie_search %>
   <%= form.submit 'Find Movies' %>
+<% end %>
+
+<h2>Top Rated Movies:</h2>
+<% @top_rated.each do |movie| %>
+    <p><%= link_to "#{movie.title}", "/movies/#{movie.id}" %> <%= movie.rating %></p>
 <% end %>
