@@ -34,19 +34,20 @@ RSpec.describe "Movies Index Page" do
 
     it 'displays the top 40 movies' do
       expect(current_path).to eq movies_path
-
-      expect(page).to have_content('The Shawshank Redemption 8.7')
-      # expect(page).to have_content "One Flew Over the Cuckoo's Nest Vote Average: 8.4"
-    end
-
-    it "has a link to discover top 40 movies" do
+      expect(page).to have_content('Evangelion: 3.0+1.0 Thrice Upon a Time Vote Average: 8.8') #page 1 results
+      expect(page).to have_content("One Flew Over the Cuckoo's Nest Vote Average: 8.4") #page 2 results
     end
 
     it 'links to each movie show page' do
+      expect(page).to have_link('The Dark Knight')
+      expect(page).to have_link("One Flew Over the Cuckoo's Nest")
+    end
 
+    it "has a button to discover top 40 movies" do
+      expect(page).to have_button('Find Top Rated Movies')
     end
   end
-  end
+end
 
   # describe "movie search" do
   #   before :each do
