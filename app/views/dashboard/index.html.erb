@@ -1,1 +1,10 @@
 <h3>Friends</h3>
+<%= render template: 'friendships/new' %>
+
+<% if @friends && !@friends.empty? %>
+  <% @friends.each do |friend| %>
+    <p><%= friend.username %></p>
+  <% end %>
+<% else %>
+  <p>You currently have no friends</p>
+<% end %>
