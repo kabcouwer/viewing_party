@@ -27,11 +27,4 @@ RSpec.describe 'Welcome Page' do
     expect(page).to have_field('password')
     expect(page).to have_button('Log In')
   end
-
-  it 'returns json data' do
-    # movies = MovieService.top_rated_movies
-    visit movies_path
-    # save_and_open_page
-    movies = MoviesFacade.top_rated
-  end
 end
