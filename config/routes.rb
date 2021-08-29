@@ -10,7 +10,12 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
 
-  resources :friendships, only: [:new, :create]
+  get '/discover', to: 'discover#index'
+  # if we want to next discover under movies we could use the non-restul route below...
+  # get '/discover', to: 'movies#discover'
 
-  get '/movies', to: 'movies#index'
+  # get '/movies', to: 'movies#index'
+  resources :movies, only: [:index, :show]
+
+  resources :friendships, only: [:new, :create]
 end
