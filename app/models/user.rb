@@ -8,4 +8,15 @@ class User < ApplicationRecord
   has_many :attendees, dependent: :destroy
 
   has_secure_password
+
+  def invites
+    Attendee.where(user_id: self.id)
+            .map(&:party)
+  end
 end
+#AR docs
+# Customer.select(:id).map { |c| c.id }
+# # or
+# Customer.select(:id).map(&:id)
+# # or
+# Customer.select(:id, :name).map { |c| [c.id, c.first_name] }
