@@ -8,3 +8,32 @@
 <% else %>
   <p>You currently have no friends</p>
 <% end %>
+
+<h3>Viewing Parties</h3>
+<section id='invited'>
+  <h4> Viewing Parties you are invited to:</h4>
+  <% current_user.invites.each do |party| %>
+    <p>Movie Title: <%= link_to "#{party.movie_title}", "/movies/#{party.external_movie_id}", method: :get, local: true %></p>
+    <p>Host: <%= User.find("#{party.party_host_id}").username %></p>
+    <p>Date: <%= party.day %></p>
+    <p>Start Time: <%= party.start_time %></p>
+    <p>Invited Attendees: <%= party.attendees.each do |attendee| %></p>
+      <p><%= User.find("#{attendee.user_id}").username %></p>
+    <% end %>
+  <% end %>
+</section>
+
+<section id='hosting'>
+  <h4>Viewing Parties You are Hosting: </h4>
+  <% if current_user.parties.count > 0 %>
+    <% current_user.parties.each do |party| %>
+    <% require 'pry'; binding.pry %>
+      <p>Movie Title: <%= link_to "#{party.movie_title}", "/movies/#{party.external_movie_id}", method: :get, local: true %></p>
+      <p>Date: <%= party.day %></p>
+      <p>Start Time: <%= party.start_time %></p>
+      <p>Friends you have invited to attend: </p>
+    <% end %>
+  <% else %>
+    <p>None Currently</p>
+  <% end %>
+</section>
