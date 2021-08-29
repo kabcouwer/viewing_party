@@ -13,6 +13,15 @@ RSpec.describe 'User Dashboard Page' do
     @friendship2 = create(:friendship, user: @user1, friend: @user3)
     @friendship3 = create(:friendship, user: @user1, friend: @user4)
     @friendship4 = create(:friendship, user: @user2, friend: @user5)
+
+    @party1 = create(:party, party_host: @user1)
+    @party2 = create(:party, party_host: @user2)
+
+    @attendee1 = create(:attendee, user: @user2, party: @party1)
+    @attendee2 = create(:attendee, user: @user3, party: @party1)
+    @attendee3 = create(:attendee, user: @user4, party: @party1)
+    @attendee4 = create(:attendee, user: @user5, party: @party2)
+
   end
 
   describe 'happy paths' do
@@ -60,6 +69,30 @@ RSpec.describe 'User Dashboard Page' do
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content(@user1.username)
     end
+
+    it 'displays Viewing Parties with status for invited or hosting' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
+
+      visit dashboard_path
+
+      expect(page).to have_content('Viewing Parties')
+      expect(page).to have_content('Viewing Parties you are invited to:')
+      expect(page).to have_content('Viewing Parties You are Hosting:')
+    end
+
+    it 'has a section for parties user has been invited to' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
+
+      visit dashboard_path
+
+      within("#invited") do
+save_and_open_page
+       expect(page).to have_link(@party_1.movie_title)
+       expect(page).to have_content("Host: #{@user_1.username}")
+       expect(page).to have_content(@party_2.date)
+       expect(page).to have_content(@party_2.start_time)
+     end
+   end
   end
 
   describe 'sad paths' do
