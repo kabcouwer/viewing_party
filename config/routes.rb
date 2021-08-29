@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 
   # get '/movies', to: 'movies#index'
   resources :movies, only: [:index, :show]
+
+  resources :friendships, only: [:new, :create]
 end
