@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_220723) do
     t.integer "duration"
     t.datetime "day"
     t.datetime "start_time"
+    t.integer "external_movie_id"
     t.bigint "party_host_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
