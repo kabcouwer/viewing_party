@@ -4,8 +4,8 @@ class User < ApplicationRecord
 
   has_many :friendships, dependent: :destroy
   has_many :friends, class_name: 'User', through: :friendships, foreign_key: 'friend_id'
-  has_many :parties, foreign_key: :party_host_id, dependent: :destroy
   has_many :attendees, dependent: :destroy
+  has_many :parties, through: :attendees
 
   has_secure_password
 end

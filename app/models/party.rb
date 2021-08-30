@@ -4,6 +4,5 @@ class Party < ApplicationRecord
   validates :day, presence: true
   validates :start_time, presence: true
 
-  belongs_to :party_host, class_name: 'User'
   has_many :attendees, dependent: :destroy
 end
