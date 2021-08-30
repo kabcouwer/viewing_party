@@ -29,24 +29,26 @@ RSpec.describe "Movies Index Page" do
   end
 end
 
-# describe 'movie search' do
-#   before :each do
-#     @user = create(:user)
-#
-#     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-#   end
-#
-#   it 'can search for a movie by title' do
-#     top_rated_movies_stubs
-#
-#     visit movies_path
-#
-#     fill_in :movie_search, with: 'Earth'
-#
-#     click_button('Find Movies')
-#     expect(page).to have_content('22 vs. Earth')
-#     expect(page).to have_content('Earth Girls Are Easy')
-#     expect(page).to have_content('Collision Earth')
-#     expect(page).to have_content('The Day the Earth Stood Still')
-#   end
-# end
+describe 'movie search' do
+  before :each do
+    @user = create(:user)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+  end
+
+  it 'can search for a movie by title' do
+    VCR.use_cassette('movie_search') do
+
+      visit movies_path
+
+      fill_in :movie_search, with: 'Earth'
+
+      click_button('Find Movies')
+
+      expect(page).to have_content('22 vs. Earth')
+      expect(page).to have_content('Earth Girls Are Easy')
+      expect(page).to have_content('Collision Earth')
+      expect(page).to have_content('The Day the Earth Stood Still')
+    end
+  end
+end

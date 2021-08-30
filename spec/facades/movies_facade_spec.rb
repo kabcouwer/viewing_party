@@ -15,7 +15,7 @@ RSpec.describe 'MoviesFacade' do
   it 'returns array of searched movies for a query' do
     VCR.use_cassette('movie_search') do
 
-      query = 'earth'
+      query = 'Earth'
 
       movie_search = MoviesFacade.movie_search(query)
 
@@ -23,7 +23,7 @@ RSpec.describe 'MoviesFacade' do
       expect(movie_search.count).to eq(40)
       expect(movie_search.first).to be_a(Movie)
       expect(movie_search.first.title).to eq('22 vs. Earth')
-      expect(movie_search.last.title).to eq('The Day the Earth Stood Still')
+      expect(movie_search.last.title).to eq('The Year Earth Changed')
     end
   end
 

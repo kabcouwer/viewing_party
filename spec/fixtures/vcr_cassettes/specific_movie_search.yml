@@ -25,7 +25,7 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 29 Aug 2021 23:50:48 GMT
+      - Mon, 30 Aug 2021 21:38:52 GMT
       Server:
       - openresty
       Access-Control-Allow-Origin:
@@ -42,11 +42,11 @@ http_interactions:
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 a44b9db7a2d103360945ab52619e5016.cloudfront.net (CloudFront)
+      - 1.1 48a6ccbb0ddb052ab512a3422295bd39.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
       - DEN50-C2
       X-Amz-Cf-Id:
-      - MTuSfAeXYVtoYbhokRuhdRGAGNfauSumQr6nNubEyEi8xbN6OLBNGg==
+      - MtHw7HQ4HKih_eCyuPv9y5kPUOJWpyoyKm-_D4JEaRaipxz_wR_D5Q==
     body:
       encoding: ASCII-8BIT
       string: '{"page":1,"results":[{"adult":false,"backdrop_path":null,"genre_ids":[35,10749,878],"id":105538,"original_language":"en","original_title":"Codependent
@@ -54,9 +54,9 @@ http_interactions:
         aliens on the planet Earth, and the story of the romance between Jane, a shy
         greeting card store employee, and Zoinx, the woman Jane does not realize is
         from outer-space. Meanwhile, two government agents, or ''Men In Black,'' are
-        closely tracking Jane and the aliens while harboring their own secrets.","popularity":3.052,"poster_path":"/5zxtGLnd87j6cQZlFjnRZzrrNLI.jpg","release_date":"2012-01-06","title":"Codependent
+        closely tracking Jane and the aliens while harboring their own secrets.","popularity":2.642,"poster_path":"/5zxtGLnd87j6cQZlFjnRZzrrNLI.jpg","release_date":"2012-01-06","title":"Codependent
         Lesbian Space Alien Seeks Same","video":false,"vote_average":4.8,"vote_count":6}],"total_pages":1,"total_results":1}'
-  recorded_at: Sun, 29 Aug 2021 23:50:48 GMT
+  recorded_at: Mon, 30 Aug 2021 21:38:52 GMT
 - request:
     method: get
     uri: https://api.themoviedb.org/3/search/movie?api_key=fd5e3ca81314005137fc3ebb81c91437&page=2&query=Codependent%20Lesbian%20Space%20Alien%20Seeks%20Same
@@ -82,7 +82,7 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 29 Aug 2021 23:50:48 GMT
+      - Mon, 30 Aug 2021 21:38:53 GMT
       Server:
       - openresty
       Access-Control-Allow-Origin:
@@ -99,13 +99,13 @@ http_interactions:
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 235fa9476ee502b13c0801d1fa3b57a2.cloudfront.net (CloudFront)
+      - 1.1 2c861897aa9389c1f47299b6fea5b59d.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
       - DEN50-C2
       X-Amz-Cf-Id:
-      - 6PhbbFVaH_3HL1h3TQBOnYrq_rFFsZCEi4XzbHqGax3_Vt2qKkK2bQ==
+      - R0YbJONg0kPznX7lm6LmkjcvVJ3Nb-cfMpMGspZPByywPD95icFgyQ==
     body:
       encoding: ASCII-8BIT
       string: '{"page":2,"results":[],"total_pages":1,"total_results":1}'
-  recorded_at: Sun, 29 Aug 2021 23:50:48 GMT
+  recorded_at: Mon, 30 Aug 2021 21:38:53 GMT
 recorded_with: VCR 6.0.0
