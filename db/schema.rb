@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_220723) do
   create_table "attendees", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "party_id"
+    t.boolean "host_status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["party_id"], name: "index_attendees_on_party_id"
@@ -38,10 +39,8 @@ ActiveRecord::Schema.define(version: 2021_08_23_220723) do
     t.integer "duration"
     t.datetime "day"
     t.datetime "start_time"
-    t.bigint "party_host_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["party_host_id"], name: "index_parties_on_party_host_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,5 +55,4 @@ ActiveRecord::Schema.define(version: 2021_08_23_220723) do
   add_foreign_key "attendees", "users"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
-  add_foreign_key "parties", "users", column: "party_host_id"
 end
