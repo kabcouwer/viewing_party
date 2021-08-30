@@ -7,7 +7,7 @@ RSpec.describe "Movies Index Page" do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-      top_rated_movies_stubs #hidden in spec_helper :)
+      top_rated_movies_stubs
 
       visit movies_path
     end
@@ -29,41 +29,24 @@ RSpec.describe "Movies Index Page" do
   end
 end
 
-  # describe "movie search" do
-  #   before :each do
-  #     @user = User.create!(email: 'DirtyGertie03@doggo.com', username: 'DirtyGertie03', password: 'RainbowRoll4lyfe')
-  #     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-  #     visit movies_path #placeholder until routing is determined
-  #     #add stub details
-  #
-  #     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-  #
-  #     response_body_1 = File.read('spec/fixtures/top_rated_page_1.json')
-  #
-  #     # allow_any_instance_of(MovieService).to receive(:top_rated_movies).and_return(response_body_1)
-  #
-  #     stub_request(:get, "https://api.themoviedb.org/3/movie/top_rated?api_key=fd5e3ca81314005137fc3ebb81c91437&page=1").
-  #            to_return(status: 200, body: "", headers: {})
-  #   end
-  #
-  #   it 'can search for a movie by title' do
-  #   end
-  #
-  #   it 'only displays first 40 search results' do
-  #   end
-  #
-  #   it 'links to each movie show page' do
-  #   end
-  #
-  #   #add edge cases (returns no search results, etc.)
-  # end
-
-# As an authenticated user,
-# When I visit the movies page,
-# I should see the 40 results from my search,
-# I should also see the "Find Top Rated Movies" button and the Find Movies form at the top of the page.
+# describe 'movie search' do
+#   before :each do
+#     @user = create(:user)
 #
-# Details: The results from the search should appear on this page, and there should only be a maximum of 40 results. The following details should be listed for each movie.
+#     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+#   end
 #
-#  Title (As a Link to the Movie Details page)
-#  Vote Average of the movie
+#   it 'can search for a movie by title' do
+#     top_rated_movies_stubs
+#
+#     visit movies_path
+#
+#     fill_in :movie_search, with: 'Earth'
+#
+#     click_button('Find Movies')
+#     expect(page).to have_content('22 vs. Earth')
+#     expect(page).to have_content('Earth Girls Are Easy')
+#     expect(page).to have_content('Collision Earth')
+#     expect(page).to have_content('The Day the Earth Stood Still')
+#   end
+# end
