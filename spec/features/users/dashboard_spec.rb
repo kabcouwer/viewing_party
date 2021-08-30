@@ -87,7 +87,7 @@ RSpec.describe 'User Dashboard Page' do
 
       within("#invited") do
 save_and_open_page
-       expect(page).to have_link(@party_1.movie_title)
+       expect(page).to have_link(@party_2.movie_title)
        expect(page).to have_content("Host: #{@user_1.username}")
        expect(page).to have_content(@party_2.date)
        expect(page).to have_content(@party_2.start_time)

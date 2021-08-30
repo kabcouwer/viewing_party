@@ -17,7 +17,7 @@
     <p>Host: <%= User.find("#{party.party_host_id}").username %></p>
     <p>Date: <%= party.day %></p>
     <p>Start Time: <%= party.start_time %></p>
-    <p>Invited Attendees: <%= party.attendees.each do |attendee| %></p>
+    <p>Invited Attendees: <% party.attendees.each do |attendee| %></p>
       <p><%= User.find("#{attendee.user_id}").username %></p>
     <% end %>
   <% end %>
@@ -27,13 +27,12 @@
   <h4>Viewing Parties You are Hosting: </h4>
   <% if current_user.parties.count > 0 %>
     <% current_user.parties.each do |party| %>
-    <% require 'pry'; binding.pry %>
       <p>Movie Title: <%= link_to "#{party.movie_title}", "/movies/#{party.external_movie_id}", method: :get, local: true %></p>
       <p>Date: <%= party.day %></p>
       <p>Start Time: <%= party.start_time %></p>
       <p>Friends you have invited to attend: </p>
     <% end %>
   <% else %>
-    <p>None Currently</p>
+    <p>You currently are not hosting any parties.</p>
   <% end %>
 </section>

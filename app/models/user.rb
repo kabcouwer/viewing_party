@@ -14,7 +14,7 @@ class User < ApplicationRecord
             .map(&:party)
   end
 end
-#AR docs
+# AR docs
 # Customer.select(:id).map { |c| c.id }
 # # or
 # Customer.select(:id).map(&:id)
