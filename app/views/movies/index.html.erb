@@ -5,7 +5,10 @@
   <%= form.submit 'Find Movies' %>
 <% end %>
 
-<h2>Top Rated Movies:</h2>
+<br>
+
+<%= button_to "Find Top Rated Movies", movies_path, method: :get %>
+<h2>Top Rated Movies with vote avereage:</h2>
 <% @top_rated.each do |movie| %>
-    <p><%= link_to "#{movie.title}", "/movies/#{movie.id}" %> <%= movie.rating %></p>
+    <p><%= link_to "#{movie.title}", "/movies/#{movie.id}" %> Vote Average: <%= movie.rating %></p>
 <% end %>

@@ -101,3 +101,27 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+def top_rated_movies_stubs
+  response_body_1 = File.read('spec/fixtures/top_rated_page_1.json')
+
+  stub_request(:get, "https://api.themoviedb.org/3/movie/top_rated?api_key=#{ENV['movie_api_key']}&page=1").
+     with(
+       headers: {
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent'=>'Faraday v1.7.0'
+       }).
+     to_return(status: 200, body: response_body_1, headers: {})
+
+  response_body_2 = File.read('spec/fixtures/top_rated_page_2.json')
+
+  stub_request(:get, "https://api.themoviedb.org/3/movie/top_rated?api_key=#{ENV['movie_api_key']}&page=2").
+     with(
+       headers: {
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent'=>'Faraday v1.7.0'
+       }).
+     to_return(status: 200, body: response_body_2, headers: {})
+end
