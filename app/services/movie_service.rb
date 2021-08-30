@@ -10,6 +10,16 @@ class MovieService
     page_1_body[:results] + page_2_body[:results]
   end
 
+  def self.movie_search(query)
+    page_1_response = conn.get("/3/search/movie?query=#{query}&page=1")
+    page_2_response = conn.get("/3/search/movie?query=#{query}&page=2")
+
+    page_1_body = parse_json(page_1_response)
+    page_2_body = parse_json(page_2_response)
+
+    page_1_body[:results] + page_2_body[:results]
+  end
+
   def self.conn
     Faraday.new(url: 'https://api.themoviedb.org') do |req|
       req.params['api_key'] = ENV['movie_api_key']

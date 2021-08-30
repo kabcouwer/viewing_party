@@ -125,3 +125,27 @@ def top_rated_movies_stubs
        }).
      to_return(status: 200, body: response_body_2, headers: {})
 end
+
+def movie_search_earth_stubs
+  response_body_1 = File.read('spec/fixtures/earth_search_page_1.json')
+
+  stub_request(:get, "https://api.themoviedb.org/3/search/movie?api_key=#{ENV['movie_api_key']}&query=earth&page=1").
+     with(
+       headers: {
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent'=>'Faraday v1.7.0'
+       }).
+     to_return(status: 200, body: response_body_1, headers: {})
+
+  response_body_2 = File.read('spec/fixtures/earth_search_page_2.json')
+
+  stub_request(:get, "https://api.themoviedb.org/3/search/movie?api_key=#{ENV['movie_api_key']}&query=earth&page=2").
+     with(
+       headers: {
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent'=>'Faraday v1.7.0'
+       }).
+     to_return(status: 200, body: response_body_2, headers: {})
+end
