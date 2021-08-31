@@ -2,6 +2,11 @@
 
 This is the base repo for the [viewing party project](https://backend.turing.io/module3/projects/viewing_party) used for Turing's Backend Module 3.
 
+## Collaborators
+
+- [Joanna Cortes Pomeo](https://github.com/JoannaCoPo)
+- [Kim Abcouwer](https://github.com/kabcouwer)
+
 ### About this Project
 
 Viewing party is an application in which users can explore movie options and create a viewing party event for the user and friend's.
