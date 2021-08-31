@@ -1,23 +1,30 @@
 class MovieService
-  # ideally refactor at some point
-  def self.top_rated_movies
-    page_1_response = conn.get('/3/movie/top_rated?&page=1')
-    page_2_response = conn.get('/3/movie/top_rated?&page=2')
-
-    page_1_body = parse_json(page_1_response)
-    page_2_body = parse_json(page_2_response)
-
-    page_1_body[:results] + page_2_body[:results]
+  def self.top_rated_movies(page)
+    response = conn.get("/3/movie/top_rated?&page=#{page}")
+    body = parse_json(response)
+    body[:results]
   end
 
-  def self.movie_search(query)
-    page_1_response = conn.get("/3/search/movie?query=#{query}&page=1")
-    page_2_response = conn.get("/3/search/movie?query=#{query}&page=2")
+  def self.find_movie(movie_id)
+    response = conn.get("/3/movie/#{movie_id}?")
+    parse_json(response)
+  end
 
-    page_1_body = parse_json(page_1_response)
-    page_2_body = parse_json(page_2_response)
+  def self.find_movie_cast(movie_id)
+    response = conn.get("/3/movie/#{movie_id}/credits?")
+    parse_json(response)
+  end
 
-    page_1_body[:results] + page_2_body[:results]
+  def self.find_movie_reviews(movie_id)
+    response = conn.get("/3/movie/#{movie_id}/reviews?")
+    response_body = parse_json(response)
+    response_body[:results]
+  end
+
+  def self.movie_search(query, page)
+    response = conn.get("/3/search/movie?query=#{query}&page=#{page}")
+    body = parse_json(response)
+    body[:results]
   end
 
   def self.conn
