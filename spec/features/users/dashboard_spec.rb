@@ -94,6 +94,18 @@ RSpec.describe 'User Dashboard Page' do
      expect(page).to have_content(@user3.username)
      expect(page).to have_content(@user4.username)
    end
+
+   it 'displays button to browse movies that redirects to the discover page' do
+     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user3)
+
+     visit dashboard_path
+
+     expect(page).to have_button('Discover Movies')
+
+     click_button('Discover Movies')
+
+     expect(current_path).to eq(discover_path)
+   end
   end
 
   describe 'sad paths' do
