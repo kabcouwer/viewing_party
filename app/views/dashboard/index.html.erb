@@ -16,12 +16,12 @@
     <p>Date: <%= party.day %></p>
     <p>Start Time: <%= party.start_time %></p>
     <% if party.find_host_id == current_user.id %>
-      <p>Hosting</p>
+      <h4>Hosting</h4>
       <% else %>
-      <p>Invited</p>
+      <h4>Invited</h4>
     <% end %>
 
-    <p>People Attending</p>
+    <h4>Friends Attending:</h4>
     <% party.attendees.each do |attendee| %>
       <p><%= User.find("#{attendee.user_id}").username %></p>
       <% end %>
