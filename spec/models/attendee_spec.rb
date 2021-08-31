@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Attendee, type: :model do
   describe 'validations' do
-    it { is_expected.to validate_inclusion_of(:host_status).in_array([true, false]) }
+    # it { is_expected.to validate_inclusion_of(:host_status).in_array([true, false]) }
   end
 
   describe 'relationships' do
