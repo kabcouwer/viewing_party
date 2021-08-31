@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :new_user, only: [:create]
+
   def new
     @user = User.new
   end
