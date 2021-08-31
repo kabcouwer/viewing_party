@@ -22,6 +22,14 @@ RSpec.describe 'User Dashboard Page' do
   end
 
   describe 'happy paths' do
+    it 'has a welcome message' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user6)
+
+      visit dashboard_path
+      save_and_open_page
+      expect(page).to have_content("Welcome #{@user6.email}!")
+    end
+
     it 'has no friends message if user has no friends' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user6)
 
