@@ -15,12 +15,10 @@ RSpec.describe 'User Dashboard Page' do
     @friendship4 = create(:friendship, user: @user2, friend: @user5)
 
     @party1 = create(:party)
-    # @party2 = create(:party, party_host: @user2)
 
     @attendee1 = Attendee.create!(host_status: true, user: @user2, party: @party1)
     @attendee2 = Attendee.create!(user: @user3, party: @party1)
     @attendee3 = Attendee.create!(user: @user4, party: @party1)
-    # @attendee4 = create(:attendee, user: @user5, party: @p
   end
 
   describe 'happy paths' do
@@ -69,16 +67,6 @@ RSpec.describe 'User Dashboard Page' do
       expect(page).to have_content(@user1.username)
     end
 
-    # it 'displays Viewing Parties with status for invited or hosting' do
-    #   allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
-    #
-    #   visit dashboard_path
-    #
-    #
-    #   expect(page).to have_content('Viewing Parties you are invited to:')
-    #   expect(page).to have_content('Viewing Parties You are Hosting:')
-    # end
-
     it 'displays viewing parties hosting' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
 
@@ -105,7 +93,7 @@ RSpec.describe 'User Dashboard Page' do
      expect(page).to have_content(@user2.username)
      expect(page).to have_content(@user3.username)
      expect(page).to have_content(@user4.username)
-  end
+   end
   end
 
   describe 'sad paths' do
@@ -121,20 +109,4 @@ RSpec.describe 'User Dashboard Page' do
       expect(page).to have_content('Sorry, your friend cannot be found')
     end
   end
-   # ADD LINK FOR MOVIE SHOW PAGE IN VP'S
-  #     <p>Movie Title: <%= link_to "#{party.movie_title}", "/movies/#{party.external_movie_id}", method: :get, local: true %></p>
 end
-
-# As an authenticated user,
-# I should see the viewing parties I have been invited to with the following details:
-#
-# Movie Title, which links to the movie show page
-# Date and Time of Event
-# who is hosting the event
-# list of friends invited, with my name in bold
-# I should also see the viewing parties that I have created with the following details:
-#
-# Movie Title, which links to the movie show page
-# Date and Time of Event
-# That I am the host of the party
-# List of friends invited to the viewing party
