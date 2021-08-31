@@ -8,5 +8,7 @@ class MoviesController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @movie = MovieFacade.find_movie(params[:id])
+  end
 end
