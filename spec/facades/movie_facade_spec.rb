@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'MoviesFacade' do
   it 'returns array of Movie objects for top 40 rated movie search' do
     VCR.use_cassette('top_rated_movies') do
-      response = MovieFacade.top_rated(2)
+      response = MovieFacade.top_rated
       id1 = 19404
       title1 = 'Dilwale Dulhania Le Jayenge'
       rating1 = 8.8
@@ -22,7 +22,7 @@ RSpec.describe 'MoviesFacade' do
   it 'returns array of searched movies for a query' do
     VCR.use_cassette('movie_search') do
       query = 'Earth'
-      response = MovieFacade.movie_search(query, 2)
+      response = MovieFacade.movie_search(query)
       id1 = 811367
       rating1 = 7.2
       title1 = '22 vs. Earth'
@@ -54,14 +54,13 @@ RSpec.describe 'MoviesFacade' do
     end
   end
 
-  it 'finds movie with movie id' do
-    VCR.use_cassette('find_free_willy_details') do
-      movie_id = 1634
+  it 'finds movie details with movie id' do
+    VCR.use_cassette('find_jurassic_park_details') do
+      movie_id = 329
       response = MovieFacade.find_movie(movie_id)
-      title = 'Free Willy'
-      rating = 6.2
-      runtime = 112
-      genres = 'Family, Adventure, Drama'
+      title = 'Jurassic Park'
+      rating = 7.9
+      runtime = 127
 
       expect(response).to be_a(MovieDetail)
       expect(response).to be_a(Movie)
@@ -69,9 +68,11 @@ RSpec.describe 'MoviesFacade' do
       expect(response.title).to eq(title)
       expect(response.rating).to eq(rating)
       expect(response.runtime).to eq(runtime)
-      expect(response.genre_array).to be_an(Array)
-      expect(response.genres).to eq(genres)
       expect(response.summary).to be_a(String)
+      expect(response.genre_array).to be_an(Array)
+      expect(response.genre_array.first).to be_a(Hash)
+      expect(response.cast_array).to be_a(Array)
+      expect(response.review_array).to be_a(Array)
     end
   end
 
@@ -79,54 +80,34 @@ RSpec.describe 'MoviesFacade' do
     VCR.use_cassette('find_jurassic_park_cast') do
       movie_id = 329
       response = MovieFacade.find_movie_cast(movie_id)
-      title = 'Jurassic Park'
-      cast1 = 'Sam Neill as Dr. Alan Grant'
-      cast2 = 'Samuel L. Jackson as Arnold'
+      name1 = 'Sam Neill'
+      character1 = 'Dr. Alan Grant'
+      name2 = 'Samuel L. Jackson'
+      character2 = 'Arnold'
 
       expect(response).to be_an(Array)
       expect(response.count).to eq(10)
-      expect(response.first).to eq(cast1)
-      expect(response.last).to eq(cast2)
+      expect(response.first).to be_a(Hash)
+      expect(response.first[:name]).to eq(name1)
+      expect(response.first[:character]).to eq(character1)
+      expect(response.last[:name]).to eq(name2)
+      expect(response.last[:character]).to eq(character2)
     end
   end
 
-  it 'adds cast to movie detail' do
-    VCR.use_cassette('find_free_willy_details') do
-      movie_id = 1634
-      response = MovieFacade.find_movie(movie_id)
-
-      expect(response).to be_a(MovieDetail)
-      expect(response).to be_a(Movie)
-      expect(response.cast).to be_an(Array)
-      expect(response.cast.count).to eq(10)
-      expect(response.cast.first).to eq('Jason James Richter as Jesse')
-      expect(response.cast.last).to eq('Danielle Harris as Gwenie')
-    end
-  end
-
-  it 'finds movie cast with movie id' do
+  it 'finds movie reviews with movie id' do
     VCR.use_cassette('find_jurassic_park_reviews') do
       movie_id = 329
       response = MovieFacade.find_movie_reviews(movie_id)
+      username1 = 'BinaryCrunch'
+      username2 = 'nsinger99'
 
       expect(response).to be_an(Array)
       expect(response.first).to be_a(Hash)
-      expect(response.first[:author]).to eq('BinaryCrunch')
-      expect(response.first[:comment]).to be_a(String)
-    end
-  end
-
-  it 'adds reviews to movie detail' do
-    VCR.use_cassette('find_jurassic_park_details') do
-      movie_id = 329
-      response = MovieFacade.find_movie(movie_id)
-
-      expect(response).to be_a(MovieDetail)
-      expect(response).to be_a(Movie)
-      expect(response.reviews).to be_an(Array)
-      expect(response.reviews.first).to be_a(Hash)
-      expect(response.reviews.first[:author]).to eq('BinaryCrunch')
-      expect(response.reviews.first[:comment]).to be_a(String)
+      expect(response.first[:author_details][:username]).to eq(username1)
+      expect(response.first[:content]).to be_a(String)
+      expect(response.last[:author_details][:username]).to eq(username2)
+      expect(response.last[:content]).to be_a(String)
     end
   end
 end

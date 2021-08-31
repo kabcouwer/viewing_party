@@ -3,7 +3,9 @@ class MovieDetail < Movie
               :genre_array,
               :genres,
               :summary,
+              :cast_array,
               :cast,
+              :review_array,
               :reviews
 
   def initialize(data)
@@ -12,13 +14,38 @@ class MovieDetail < Movie
     @genre_array = data[:genres]
     @genres = genres
     @summary = data[:overview]
-    @cast = data[:cast]
-    @reviews = data[:reviews]
+    @cast_array = data[:cast]
+    @cast = cast
+    @review_array = data[:reviews]
+    @reviews = reviews
   end
 
   def genres
-    @genre_array.map do |hash|
-      hash[:name]
-    end.join(', ')
+    if !@genre_array.nil?
+      @genre_array.map do |hash|
+        hash[:name]
+      end.join(', ')
+    end
+  end
+
+  def cast
+    if !@cast_array.nil?
+      @cast_array.map do |hash|
+        hash[:name] + ' as ' + hash[:character]
+      end
+    end
+  end
+
+  def reviews
+    reviews = []
+    if !@review_array.nil?
+      @review_array.map do |hash|
+        review_hash = Hash.new
+        review_hash[:author] = hash[:author_details][:username]
+        review_hash[:comment] = hash[:content]
+        reviews << review_hash
+      end
+    end
+    reviews
   end
 end

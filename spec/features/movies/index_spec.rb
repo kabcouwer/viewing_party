@@ -43,7 +43,7 @@ RSpec.describe "Movies Index Page" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
 
-    xit 'can search for a movie by title' do
+    it 'can search for a movie by title' do
       VCR.use_cassette('movie_search') do
 
         visit movies_path
