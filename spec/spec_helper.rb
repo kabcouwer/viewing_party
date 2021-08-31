@@ -149,3 +149,18 @@ def movie_search_earth_stubs
        }).
      to_return(status: 200, body: response_body_2, headers: {})
 end
+
+def find_free_willy_stubs
+  response_body = File.read('spec/fixtures/free_willy.json')
+
+  stub_request(:get, "https://api.themoviedb.org/3/movie/1634?api_key=#{ENV['movie_api_key']}").
+     with(
+       headers: {
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent'=>'Faraday v1.7.0'
+       }).
+     to_return(status: 200, body: response_body, headers: {})
+
+  response_body_2 = File.read('spec/fixtures/earth_search_page_2.json')
+end
