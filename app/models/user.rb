@@ -8,4 +8,9 @@ class User < ApplicationRecord
   has_many :parties, through: :attendees
 
   has_secure_password
+
+  # def invites
+  #   Attendee.where(user_id: self.id)
+  #           .map(&:party)
+  # end
 end
