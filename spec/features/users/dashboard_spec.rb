@@ -13,9 +13,23 @@ RSpec.describe 'User Dashboard Page' do
     @friendship2 = create(:friendship, user: @user1, friend: @user3)
     @friendship3 = create(:friendship, user: @user1, friend: @user4)
     @friendship4 = create(:friendship, user: @user2, friend: @user5)
+
+    @party1 = create(:party)
+
+    @attendee1 = Attendee.create!(host_status: true, user: @user2, party: @party1)
+    @attendee2 = Attendee.create!(user: @user3, party: @party1)
+    @attendee3 = Attendee.create!(user: @user4, party: @party1)
   end
 
   describe 'happy paths' do
+    it 'has a welcome message' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user6)
+
+      visit dashboard_path
+      save_and_open_page
+      expect(page).to have_content("Welcome #{@user6.email}!")
+    end
+
     it 'has no friends message if user has no friends' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user6)
 
@@ -60,6 +74,46 @@ RSpec.describe 'User Dashboard Page' do
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content(@user1.username)
     end
+
+    it 'displays viewing parties hosting' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
+
+      visit dashboard_path
+
+      expect(page).to have_content('Viewing Parties')
+      expect(page).to have_link(@party1.movie_title) #change to link when ready
+      expect(page).to have_content('Hosting')
+      expect(page).to have_content(@party1.day)
+      expect(page).to have_content(@party1.start_time)
+      expect(page).to have_content(@user2.username)
+      expect(page).to have_content(@user3.username)
+      expect(page).to have_content(@user4.username)
+   end
+
+   it 'displays viewing parties hosting' do
+     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user3)
+
+     visit dashboard_path
+
+     expect(page).to have_content('Invited')
+     expect(page).to have_content(@party1.day)
+     expect(page).to have_content(@party1.start_time)
+     expect(page).to have_content(@user2.username)
+     expect(page).to have_content(@user3.username)
+     expect(page).to have_content(@user4.username)
+   end
+
+   it 'displays button to browse movies that redirects to the discover page' do
+     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user3)
+
+     visit dashboard_path
+
+     expect(page).to have_button('Discover Movies')
+
+     click_button('Discover Movies')
+
+     expect(current_path).to eq(discover_path)
+   end
   end
 
   describe 'sad paths' do
@@ -76,17 +130,3 @@ RSpec.describe 'User Dashboard Page' do
     end
   end
 end
-
-# As an authenticated user,
-# I should see the viewing parties I have been invited to with the following details:
-#
-# Movie Title, which links to the movie show page
-# Date and Time of Event
-# who is hosting the event
-# list of friends invited, with my name in bold
-# I should also see the viewing parties that I have created with the following details:
-#
-# Movie Title, which links to the movie show page
-# Date and Time of Event
-# That I am the host of the party
-# List of friends invited to the viewing party

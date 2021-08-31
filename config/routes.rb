@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   resources :movies, only: [:index, :show]
 
   resources :friendships, only: [:new, :create]
+
+  resources :parties, only: [:new, :create]
 end

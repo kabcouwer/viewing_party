@@ -1,0 +1,29 @@
+<h2>Viewing Party Details</h2>
+<h3><%= @movie_title %></h3>
+
+<%= form_with model: @party, local: true do |f| %>
+  <%= f.label :movie_title, 'Movie Title' %><br>
+  <%= f.text_field :movie_title, value: @movie_title %><br>
+
+  <%= f.label :duration, 'Duration of Party (minutes)' %><br>
+  <%= f.number_field :duration, value: @duration, min: @duration, required: true %><br>
+
+  <%= f.label :day, 'Day' %><br>
+  <%= f.date_field :day, required: true %><br>
+
+  <%= f.label :start_time, 'Start Time' %><br>
+  <%= f.date_field :start_time, required: true %><br>
+
+  <% if current_user.friends.empty? %>
+    <p>You have not added friends to your account yet.</p>
+  <% else %>
+    <h4>Include:</h4>
+    <% current_user.friends.each do |friend| %>
+    <div id="friend-<%= friend.id %>">
+      <%= f.label friend.username %>
+      <%= f.check_box friend.username %>
+    </div>
+    <% end %>
+  <% end %>
+  <%= f.submit 'Create Party' %>
+<% end %>
