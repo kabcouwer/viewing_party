@@ -17,9 +17,9 @@ FactoryBot.define do
     start_time { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now) }
   end
 
-  factory :attendee do
-    host_status { Faker::Boolean.boolean }
-    user
-    party
-  end
+  # factory :attendee do
+  #   host_status { Faker::Boolean.boolean }
+  #   user
+  #   party
+  # end
 end
