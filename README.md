@@ -20,3 +20,7 @@ Viewing party is an application in which users can explore movie options and cre
 - Rails 5.2.5
 
 Example wireframes to follow are found [here](https://backend.turing.io/module3/projects/viewing_party/wireframes)
+
+## Database Schema Diagram
+
+![db_diagram](https://github.com/kabcouwer/viewing_party/blob/main/app/assets/images/viewing_party_db_diagram.jpg)
