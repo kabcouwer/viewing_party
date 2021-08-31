@@ -26,7 +26,7 @@ RSpec.describe 'User Dashboard Page' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user6)
 
       visit dashboard_path
-      save_and_open_page
+      
       expect(page).to have_content("Welcome #{@user6.email}!")
     end
 

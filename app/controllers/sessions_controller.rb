@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       redirect_to dashboard_path
     else
       flash[:error] = 'Sorry, your credentials are invalid. Try Again.'
-      render :new
+      redirect_to login_path
     end
   end
 

@@ -1,5 +1,10 @@
-<h1>Welcome to Viewing Party!</h1>
-<h3>This app allows you to watch movies with your friends.</h3>
-
-<%= render template: 'sessions/new' %>
-<%= link_to 'New to viewing party? Register here!', registration_path %>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Welcome to Viewing Party!</h1>
+      <p class="lead text-muted">This app allows you to watch movies with your friends.</p>
+      <%= render 'login_form' %>
+      <%= link_to 'New to viewing party? Register here!', registration_path %>
+    </div>
+  </div>
+</section>
