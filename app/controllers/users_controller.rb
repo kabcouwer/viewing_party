@@ -4,10 +4,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = user_params
-    user[:username] = user[:username].downcase
-    user[:email] = user[:email].downcase
-    new_user = User.create(user)
     if new_user.save
       flash[:success] = "Welcome, #{new_user.username}"
       redirect_to dashboard_path
@@ -21,5 +17,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :username, :password, :password_confirmation)
+  end
+
+  def new_user
+    user = user_params
+    user[:username] = user[:username].downcase
+    user[:email] = user[:email].downcase
+    User.create(user)
   end
 end
