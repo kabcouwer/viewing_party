@@ -1,7 +1,7 @@
-class Parties < ApplicationController
+class PartiesController < ApplicationController
   def new
-    @movie_title = params[:movie_title]
     @duration = params[:duration]
+    @movie = MovieFacade.find_movie(params[:id])
     @party = Party.new
   end
 
@@ -23,10 +23,6 @@ class Parties < ApplicationController
 
   private
   def party_params
-    params.require(:party).permit(:movie_title, :duration, :day, :start_time)
+    params.require(:party).permit(:movie_title, :duration.to_i, :day, :start_time, :id)
   end
-
-  # for potential refactor
-  # def create_inviation(party)
-  # end
 end
