@@ -6,15 +6,56 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <style>
+        hr {
+            position: relative;
+            top: 0px;
+            border: none;
+            height: 4px;
+            background: black;
+            margin-bottom: 30px;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            display: flex;
+            align-self: baseline;
+            flex-direction: row;
+        }
+    </style>
   </head>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="https://https://view-party-app.herokuapp.com">Viewing Party</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
+        <a class="nav-item nav-link" href="/discover">Discover</a>
+      </div>
+    </div>
+  </nav>
 
   <body>
     <main>
-      <center><% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class:name %>
-      <% end %></center>
+      <div class="container p-3 my-3 border">
+        <center><% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class:name %>
+          <% end %></center>
 
-      <%= yield %>
+          <%= yield %>
+      </div>
     </main>
     <footer>
       <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="The MovieDB Logo" width="75px" style="margin:10px" >

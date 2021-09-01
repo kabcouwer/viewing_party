@@ -12,8 +12,9 @@
 <% end %>
 
 <h3>Viewing Parties</h3>
-<% current_user.parties.each do |party| %>
-<section id="party-<%=party.id %>">
+<% if !current_user.parties.nil? %>
+  <% current_user.parties.each do |party| %>
+    <section id="party-<%=party.id %>">
     <p>Movie Title: <%= link_to "#{party.movie_title}" %></p>
     <p>Date: <%= party.day %></p>
     <p>Start Time: <%= party.start_time %></p>
@@ -21,11 +22,13 @@
       <h4>Hosting</h4>
       <% else %>
       <h4>Invited</h4>
-    <% end %>
-
-    <h4>Friends Attending:</h4>
-    <% party.attendees.each do |attendee| %>
-      <p><%= User.find("#{attendee.user_id}").username %></p>
+      <h4>Friends Attending:</h4>
+      <% party.attendees.each do |attendee| %>
+        <p><%= User.find("#{attendee.user_id}").username %></p>
       <% end %>
-  </section>
+    <% end %>
+    </section>
   <% end %>
+<% else %>
+<p>You currently have no parties</p>
+<% end %>

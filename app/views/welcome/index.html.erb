@@ -3,8 +3,13 @@
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light">Welcome to Viewing Party!</h1>
       <p class="lead text-muted">This app allows you to watch movies with your friends.</p>
+    <% if current_user %>
+      <p>Logged in as <%= current_user.username %></p>
+      <%= button_to 'Log Out', logout_path, method: :get, class: "btn btn-secondary", name: 'Log Out' %>
+    <% else %>
       <%= render 'login_form' %>
       <%= link_to 'New to viewing party? Register here!', registration_path %>
+      <% end %>
     </div>
   </div>
 </section>

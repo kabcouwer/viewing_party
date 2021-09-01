@@ -2,30 +2,15 @@
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light">Welcome to Viewing Party!</h1>
-      <p class="lead text-muted">Please register in order to enjoy this app.</p>
-      <form>
-        <%= form_with model: @user, url: registration_path, local: true do |form| %>
-        <div class="form-group">
-          <%= form.label :username, 'Username' %>
-          <%= form.text_field :username, class: 'form-control', placeholder: 'Enter username' %>
-        </div>
-        <div class="form-group">
-          <%= form.label :email, 'Email Address' %>
-          <%= form.text_field :email, class: 'form-control', placeholder: 'Enter email' %>
-        </div>
-        <div class="form-group">
-          <%= form.label :password, 'Password' %>
-          <%= form.text_field :password, class: 'form-control', placeholder: 'Enter password (must be at least 6 characters)' %>
-        </div>
-        <div class="form-group">
-          <%= form.label :password_confirmation, 'Password Confirmation' %>
-          <%= form.text_field :password_confirmation, class: 'form-control', placeholder: 'Re-enter password' %>
-        </div>
-        <a href="#" class="btn btn-light">
-          <%= form.submit 'Register' %>
-        </a>
-        <% end %>
-    </form>
-  </div>
+      <p class="lead text-muted">Please Register for an Account.</p>
+      <%= bootstrap_form_with model: @user, url: registration_path, local: true do |form| %>
+        <%= form.text_field :username, label: 'Enter Username:' %>
+        <%= form.email_field :email, label: 'Enter Email Address' %>
+        <%= form.password_field :password, label: 'Enter Password' %>
+        <%= form.password_field :password_confirmation, label: 'Please Re-enter Password', help: "Must be at least 6 characters long" %>
+
+        <%= form.submit 'Register' %>
+      <% end %>
+    </div>
   </div>
 </section>

@@ -1,21 +1,13 @@
 <section class="py-5 text-center container">
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <form>
-        <%= form_with model: @user, url: login_path, local: true do |form| %>
-        <div class="form-group">
-          <%= form.label :email, 'Email Address' %>
-          <%= form.text_field :email, class: 'form-control', placeholder: 'Enter email' %>
-        </div>
-        <div class="form-group">
-          <%= form.label :password, 'Password' %>
-          <%= form.text_field :password, class: 'form-control', placeholder: 'Password'%>
-        </div>
-          <a href="#" class="btn btn-light">
-            <%= form.submit 'Log In' %>
-          </a>
-        <% end %>
-      </form>
+    <h1 class="fw-light">So Close! Try Again &#128526</h1>
+      <%= bootstrap_form_with model: @user, url: login_path, local: true do |form| %>
+        <%= form.email_field :email, label: 'Email address:' %>
+        <%= form.password_field :password, label: 'Password:', help: "Must be at least 6 characters long" %>
+
+        <%= form.submit 'Log In' %>
+      <% end %>
     </div>
   </div>
 </section>

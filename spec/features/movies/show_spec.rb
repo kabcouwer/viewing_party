@@ -10,22 +10,26 @@ RSpec.describe "Movies Show Page" do
   end
 
   describe "happy paths" do
-    it 'shows the movie title' do
+    it 'shows the movie details' do
       VCR.use_cassette('find_jurassic_park_details') do
         visit movie_path(@movie_id)
 
         movie = MovieFacade.find_movie(@movie_id)
 
-# save_and_open_page
         expect(page).to have_content(movie.title)
         expect(page).to have_content("Vote Average: #{movie.rating}")
         expect(page).to have_content("Runtime: #{movie.runtime}")
         expect(page).to have_content("Genre(s): #{movie.genres}")
-        expect(page).to have_content("Summary:")
+        expect(page).to have_content("Summary")
         expect(page).to have_content(movie.summary)
-        expect(page).to have_content("Cast:")
+        expect(page).to have_content("Cast")
         expect(page).to have_content(movie.cast.first)
         expect(page).to have_content(movie.cast.last)
+        expect(page).to have_content("#{movie.reviews.count} Reviews")
+        expect(page).to have_content(movie.reviews.first[:author])
+        expect(page).to have_content(movie.reviews.first[:comment])
+        expect(page).to have_content(movie.reviews.last[:author])
+        # expect(page).to have_content(movie.reviews.last[:comment])
       end
     end
   end

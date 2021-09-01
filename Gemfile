@@ -20,6 +20,7 @@ gem 'figaro'
 
 #styling
 gem 'bootstrap', '~> 4.0.0'
+gem "bootstrap_form", "~> 4.0"
 gem 'jquery-rails'
 
 # Use ActiveModel has_secure_password
