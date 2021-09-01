@@ -21,7 +21,7 @@ class MovieDetail < Movie
   end
 
   def genres
-    if !@genre_array.nil?
+    unless @genre_array.nil?
       @genre_array.map do |hash|
         hash[:name]
       end.join(', ')
@@ -29,18 +29,18 @@ class MovieDetail < Movie
   end
 
   def cast
-    if !@cast_array.nil?
+    unless @cast_array.nil?
       @cast_array.map do |hash|
-        hash[:name] + ' as ' + hash[:character]
+        "#{hash[:name]} as #{hash[:character]}"
       end
     end
   end
 
   def reviews
     reviews = []
-    if !@review_array.nil?
+    unless @review_array.nil?
       @review_array.map do |hash|
-        review_hash = Hash.new
+        review_hash = {}
         review_hash[:author] = hash[:author_details][:username]
         review_hash[:comment] = hash[:content]
         reviews << review_hash

@@ -1,5 +1,5 @@
 class Parties < ApplicationController
-  before_action :require_login, only: [:new, :create]
+  before_action :require_login, only: %i[new create]
 
   def new
     @movie_title = params[:movie_title]
@@ -24,6 +24,7 @@ class Parties < ApplicationController
   end
 
   private
+
   def party_params
     params.require(:party).permit(:movie_title, :duration, :day, :start_time)
   end
