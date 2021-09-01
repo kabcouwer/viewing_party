@@ -1,4 +1,7 @@
 <h1><%= @movie.title %></h1>
+<aside><%= link_to "Create Viewing Party for #{@movie.title}", new_party_path(movie_title: @movie.title, id:@movie.id, duration: @movie.runtime) %>
+</aside><br>
+
 <p><strong>Vote Average:</strong> <%= @movie.rating %></p>
 <p><strong>Runtime:</strong> <%= @movie.runtime %></p>
 <p><strong>Genre(s):</strong> <%= @movie.genres %></p>
