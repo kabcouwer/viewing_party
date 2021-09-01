@@ -1,4 +1,6 @@
 class Parties < ApplicationController
+  before_action :require_login, only: [:new, :create]
+
   def new
     @movie_title = params[:movie_title]
     @duration = params[:duration]

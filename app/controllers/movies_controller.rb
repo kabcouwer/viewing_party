@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  before_action :require_login, only: [:index, :show]
+
   def index
     if params[:movie_search]
       query = params[:movie_search]
