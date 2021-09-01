@@ -1,7 +1,7 @@
 <h2>Viewing Party Details</h2>
 
 <div id='form-group'>
-<%= form_with model: @party, local: true do |f| %>
+<%= form_with model: @party, url: parties_path, local: true do |f| %>
   <%= f.label :movie_title, 'Movie Title' %><br>
   <%= f.text_field :movie_title, value: @movie.title %><br>
 </div>
@@ -12,7 +12,7 @@
   <%= f.date_field :day, required: true %><br>
 
   <%= f.label :start_time, 'Start Time' %><br>
-  <%= f.date_field :start_time, required: true %><br>
+  <%= f.time_field :start_time, required: true %><br>
 
   <% if current_user.friends.empty? %>
     <p>You have not added friends to your account yet.</p>
@@ -20,8 +20,8 @@
     <h4>Include:</h4>
     <% current_user.friends.each do |friend| %>
     <div id="friend-<%= friend.id %>">
-      <%= f.label friend.username %>
-      <%= f.check_box friend.username %>
+      <%= f.label "#{friend.username}" %>
+      <%= f.check_box "attendees[#{friend.id}]" %>
     </div>
     <% end %>
   <% end %>
