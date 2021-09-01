@@ -29,7 +29,7 @@ RSpec.describe "New Viewing Party" do
         click_link('Create Viewing Party for Jurassic Park')
 
         expect(current_path).to eq(new_party_path)
-        save_and_open_page
+
         expect(page).to have('Jurassic Park')
       end
     end
@@ -59,20 +59,23 @@ RSpec.describe "New Viewing Party" do
         expect(page).to have_field('party[day]')
         expect(page).to have_field('party[start_time]')
 
-        #factory_bot struggles
-        #   name = @user2.username
-        #   clean_name = name.gsub(/\W/, ' ').capitalize
-        #   expect(page).to have_unchecked_field('friend[clean_name]')
-          # check(@user2.username.gsub(/\W/, ' ').capitalize)
-
         fill_in 'party[day]', with: '2021-10-10'
         fill_in 'party[start_time]', with: '07:00 PM'
 
-        check('party[Tester1]')
-        check('party[Tester2]')
-        check('party[Tester3]')
-        uncheck('party[Tester3]')
+        within "#friend-#{@user2.id}" do
+          check("party[attendees[#{@user2.id}]]")
+        end
 
+        within "#friend-#{@user3.id}" do
+          check("party[attendees[#{@user3.id}]]")
+        end
+
+        within "#friend-#{@user4.id}" do
+          check("party[attendees[#{@user4.id}]]")
+        end
+
+        expect(page).to have_button('Create Party')
+        
         click_on('Create Party')
 
         expect(current_path).to eq(dashboard_path)
@@ -80,3 +83,9 @@ RSpec.describe "New Viewing Party" do
     end
   end
 end
+
+# <% current_user.friends.each do |friend| %>
+# <div id="friend-<%= friend.id %>">
+#   <%= f.label :friend, "#{friend.username}" %>
+#   <%= f.check_box :friend%>
+# </div>
