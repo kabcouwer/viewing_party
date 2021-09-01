@@ -1,14 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe "Movies Index Page" do
+  describe 'authorization' do
+    it 'does not allow access for this page if not logged in' do
+      visit movies_path
+
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content('Sorry this page is off limits. Please register or login to have access.')
+    end
+  end
+
   describe "top rated movies" do
     before :each do
       @user = create(:user)
-
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
 
     it 'displays the top 40 movies' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
       VCR.use_cassette('top_rated_movies') do
         visit movies_path
 
@@ -19,6 +28,8 @@ RSpec.describe "Movies Index Page" do
     end
 
     it 'links to each movie show page' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
       VCR.use_cassette('top_rated_movies') do
         visit movies_path
 
@@ -28,6 +39,8 @@ RSpec.describe "Movies Index Page" do
     end
 
     it "has a button to discover top 40 movies" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
       VCR.use_cassette('top_rated_movies') do
         visit movies_path
 
@@ -39,11 +52,11 @@ RSpec.describe "Movies Index Page" do
   describe 'movie search' do
     before :each do
       @user = create(:user)
-
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
 
     it 'can search for a movie by title' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      
       VCR.use_cassette('movie_search') do
 
         visit movies_path

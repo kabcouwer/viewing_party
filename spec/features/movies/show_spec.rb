@@ -3,14 +3,22 @@ require 'rails_helper'
 RSpec.describe "Movies Show Page" do
   before :each do
     @user = create(:user)
-
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-
     @movie_id = movie_id = 329
+  end
+
+  describe 'authorization' do
+    it 'does not allow access for this page if not logged in' do
+      visit movies_path(@movie_id)
+
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content('Sorry this page is off limits. Please register or login to have access.')
+    end
   end
 
   describe "happy paths" do
     it 'shows the movie details' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
       VCR.use_cassette('find_jurassic_park_details') do
         visit movie_path(@movie_id)
 

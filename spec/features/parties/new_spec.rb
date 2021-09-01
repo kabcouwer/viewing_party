@@ -12,15 +12,23 @@ RSpec.describe "New Viewing Party" do
       @friendship2 = create(:friendship, user: @user1, friend: @user3)
       @friendship3 = create(:friendship, user: @user1, friend: @user4)
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-      #see what stub or vcr info kim used for moveie show page; ideally use same here
-      # free_willy_stub
+      @movie_id = 329
+    end
+
+    describe 'authorization' do
+      it 'does not allow access for this page if not logged in' do
+        visit movie_path(@movie_id)
+
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content('Sorry this page is off limits. Please register or login to have access.')
+      end
     end
 
     xit 'dislays the title of movie selected' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
       VCR.use_cassette('find_jurassic_park_details') do
-        movie_id = 329
-        visit movie_path(movie_id)
+        visit movie_path(@movie_id)
 
         click_button('Create Viewing Party for Movie')
 
@@ -29,10 +37,11 @@ RSpec.describe "New Viewing Party" do
       end
     end
 
-    it 'dislays a form to create a party to view selected movie' do
+    xit 'dislays a form to create a party to view selected movie' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      
       VCR.use_cassette('find_jurassic_park_details') do
-        movie_id = 329
-        visit movie_path(movie_id)
+        visit movie_path(@movie_id)
 
         click_button('Create Viewing Party for Movie')
 
