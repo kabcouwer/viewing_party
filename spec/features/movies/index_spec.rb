@@ -23,7 +23,7 @@ RSpec.describe "Movies Index Page" do
 
         expect(current_path).to eq movies_path
         expect(page).to have_content('Evangelion: 3.0+1.0 Thrice Upon a Time Vote Average: 8.7') #page 1 results
-        expect(page).to have_content("One Flew Over the Cuckoo's Nest Vote Average: 8.4") #page 2 results
+        expect(page).to have_content('Fight Club Vote Average: 8.4') #page 2 results
       end
     end
 
@@ -34,7 +34,7 @@ RSpec.describe "Movies Index Page" do
         visit movies_path
 
         expect(page).to have_link('The Dark Knight')
-        expect(page).to have_link("One Flew Over the Cuckoo's Nest")
+        expect(page).to have_link('Fight Club')
       end
     end
 
@@ -56,7 +56,7 @@ RSpec.describe "Movies Index Page" do
 
     it 'can search for a movie by title' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-      
+
       VCR.use_cassette('movie_search') do
 
         visit movies_path

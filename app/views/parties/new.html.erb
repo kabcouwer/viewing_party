@@ -6,7 +6,7 @@
   <%= f.text_field :movie_title, value: @movie.title %><br>
 </div>
   <%= f.label :duration, 'Duration of Party (minutes)' %><br>
-  <%= f.number_field :duration, value: @duration, min: @duration, required: true %><br>
+  <%= f.number_field :duration, value: @movie.runtime, min: @movie.runtime, required: true %><br>
 
   <%= f.label :day, 'Day' %><br>
   <%= f.date_field :day, required: true %><br>

@@ -28,25 +28,9 @@ RSpec.describe "New Viewing Party" do
       end
     end
 
-    xit 'dislays the title of movie selected' do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    it 'dislays a form to create a party to view selected movie' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
 
-      VCR.use_cassette('find_jurassic_park_details') do
-        visit movie_path(@movie_id)
-
-        movie = MovieFacade.find_movie(@movie_id)
-
-        click_link('Create Viewing Party for Jurassic Park')
-
-        expect(current_path).to eq(new_party_path)
-
-        expect(page).to have('Jurassic Park')
-      end
-    end
-
-    xit 'dislays a form to create a party to view selected movie' do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-      
       VCR.use_cassette('find_jurassic_park_details') do
         visit movie_path(@movie_id)
 
@@ -60,7 +44,7 @@ RSpec.describe "New Viewing Party" do
         expect(page).to have_field('party[day]')
         expect(page).to have_field('party[start_time]')
 
-        fill_in 'party[day]', with: '2021-10-10'
+        fill_in 'party[day]', with: '2021/10/10'
         fill_in 'party[start_time]', with: '07:00 PM'
 
         within "#friend-#{@user2.id}" do
@@ -74,9 +58,9 @@ RSpec.describe "New Viewing Party" do
         within "#friend-#{@user4.id}" do
           check("party[attendees[#{@user4.id}]]")
         end
-
+save_and_open_page
         expect(page).to have_button('Create Party')
-        
+
         click_on('Create Party')
 
         expect(current_path).to eq(dashboard_path)
