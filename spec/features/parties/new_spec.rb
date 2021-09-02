@@ -58,7 +58,7 @@ RSpec.describe "New Viewing Party" do
         within "#friend-#{@user4.id}" do
           check("party[attendees[#{@user4.id}]]")
         end
-save_and_open_page
+        
         expect(page).to have_button('Create Party')
 
         click_on('Create Party')
