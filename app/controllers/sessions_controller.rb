@@ -9,12 +9,12 @@ class SessionsController < ApplicationController
       redirect_to dashboard_path
     else
       flash[:error] = 'Sorry, your credentials are invalid. Try Again.'
-      render :new
+      redirect_to login_path
     end
   end
 
-  # def destroy
-  #   session[:user_id] = nil
-  #   redirect_to root_path
-  # end
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path
+  end
 end

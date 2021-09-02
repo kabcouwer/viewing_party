@@ -37,7 +37,7 @@ RSpec.describe 'Registration Page' do
       click_on 'Register'
 
       expect(current_path).to eq(registration_path)
-      expect(page).to have_content("Email can't be blank, Username can't be blank, and Password can't be blank")
+      expect(page).to have_content("Email can't be blank, Username can't be blank, Password can't be blank, and Password is too short")
       expect(page).to have_field('user[username]')
       expect(page).to have_field('user[email]')
       expect(page).to have_field('user[password]')

@@ -1,13 +1,33 @@
-<h1><%= @movie.title %></h1>
-<aside><%= link_to "Create Viewing Party for #{@movie.title}", new_party_path(movie_title: @movie.title, id:@movie.id, duration: @movie.runtime) %>
+<h1><%= @movie.title %></h1><aside><%= link_to "Create Viewing Party for #{@movie.title}", new_party_path(movie_title: @movie.title, id:@movie.id, duration: @movie.runtime) %>
 </aside><br>
 
-<p><strong>Vote Average:</strong> <%= @movie.rating %></p>
-<p><strong>Runtime:</strong> <%= @movie.runtime %></p>
-<p><strong>Genre(s):</strong> <%= @movie.genres %></p>
-<h4>Summary:</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <h5><strong>Vote Average:</strong> <%= @movie.rating %><h5>
+    </div>
+    <div class="col-3">
+      <h5><strong>Runtime:</strong> <%= @movie.runtime %><h5>
+    </div>
+    <div class="col-6">
+      <h5><strong>Genre(s):</strong> <%= @movie.genres %><h5>
+    </div>
+  </div>
+</div>
+<hr>
+        
+<h4>Summary</h4>
 <p><%= @movie.summary %></p>
-<h4>Cast:</h4>
+<hr>
+        
+<h4>Cast</h4>
 <% @movie.cast.each do |cast| %>
   <p><%= cast %></p>
+<% end %>
+<hr>
+        
+<h4><%= @movie.reviews.count %> Reviews</h4>
+<% @movie.reviews.each do |review| %>
+  <h5><%= review[:author] %></h5>
+  <p><%= review[:comment] %></p>
 <% end %>

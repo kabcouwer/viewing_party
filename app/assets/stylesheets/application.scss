@@ -10,22 +10,22 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+ @import 'bootstrap';
+ @import "rails_bootstrap_forms"
 
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
+// body {
+//   display: flex;
+//   min-height: 100vh;
+//   flex-direction: column;
+// }
 
-main {
-  flex: 1;
-}
-
-footer {
-  display: flex;
-  align-self: baseline;
-  flex-direction: row;
-}
+// main {
+//   flex: 1;
+// }
+//
+// footer {
+//   display: flex;
+//   align-self: baseline;
+//   flex-direction: row;
+// }

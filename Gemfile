@@ -18,6 +18,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'faraday'
 gem 'figaro'
 
+#styling
+gem 'bootstrap', '~> 4.0.0'
+gem "bootstrap_form", "~> 4.0"
+gem 'jquery-rails'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

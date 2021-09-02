@@ -1,9 +1,10 @@
 class PartiesController < ApplicationController
+  before_action :require_login, only: %i[new create]
+
   def new
-    @duration = params[:duration]
+    # @duration = params[:duration]
     @movie = MovieFacade.find_movie(params[:id])
     @party = Party.new
-    # require "pry"; binding.pry
   end
 
   def create
@@ -20,16 +21,4 @@ class PartiesController < ApplicationController
   def party_params
     params.require(:party).permit(:movie_title, :duration, :day, :start_time, :id)
   end
-
-  def redirect_with_params
-    # redirect_to controller: 'attendees', action:
-    # new_party_path({ movie_title: params[:party][:movie_title], duration: params[:duration],
-    #                              id: params[:id] })
-  end
-
-  # def invite_attendee(party)
-  #   params[:party][:attendees].each do |attendee|
-  #     party.attendees.create(friend_id: attendee) if attendee != ''
-  #   end
-  # end
 end
