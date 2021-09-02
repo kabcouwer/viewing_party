@@ -1,29 +1,29 @@
 <h2>Viewing Party Details</h2>
 
 <div id='form-group'>
-<%= form_with model: @party, url: parties_path, local: true do |f| %>
-  <%= f.label :movie_title, 'Movie Title' %><br>
-  <%= f.text_field :movie_title, value: @movie.title %><br>
+<%= bootstrap_form_with model: @party, url: parties_path, local: true do |f| %>
+  <%= f.text_field :movie_title, label: 'Movie Title', value: @movie.title %><br>
 </div>
-  <%= f.label :duration, 'Duration of Party (minutes)' %><br>
-  <%= f.number_field :duration, value: @movie.runtime, min: @movie.runtime, required: true %><br>
-
-  <%= f.label :day, 'Day' %><br>
-  <%= f.date_field :day, required: true %><br>
-
-  <%= f.label :start_time, 'Start Time' %><br>
-  <%= f.time_field :start_time, required: true %><br>
-
+<div id='form-group'>
+  <%= f.number_field :duration, label: 'Duration of Party (minutes)', value: @movie.runtime, min: @movie.runtime, required: true %><br>
+</div>
+<div id='form-group'>
+  <%= f.date_field :day, label: 'Day', required: true %><br>
+</div>
+<div id='form-group'>
+  <%= f.time_field :start_time, label: 'Start Time', required: true %><br>
+</div>
+<div id='form-group'>
   <% if current_user.friends.empty? %>
     <p>You have not added friends to your account yet.</p>
   <% else %>
     <h4>Include:</h4>
     <% current_user.friends.each do |friend| %>
     <div id="friend-<%= friend.id %>">
-      <%= f.label "#{friend.username}" %>
-      <%= f.check_box "attendees[#{friend.id}]" %>
+      <%= f.check_box "attendees[#{friend.id}]", label: "#{friend.username}" %>
     </div>
     <% end %>
   <% end %>
+  </div>
   <%= f.submit 'Create Party' %>
 <% end %>

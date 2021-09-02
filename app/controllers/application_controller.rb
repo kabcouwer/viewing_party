@@ -16,3 +16,5 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+
+# @current_user ||= User.find(session[:user_id]) if session[:user_id]

@@ -49,13 +49,11 @@
 
   <body>
     <main>
-      <div class="container p-3 my-3 border">
         <center><% flash.each do |name, msg| %>
           <%= content_tag :div, msg, class:name %>
           <% end %></center>
 
           <%= yield %>
-      </div>
     </main>
     <footer>
       <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="The MovieDB Logo" width="75px" style="margin:10px" >
