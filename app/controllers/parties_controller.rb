@@ -1,35 +1,24 @@
-class Parties < ApplicationController
+class PartiesController < ApplicationController
   before_action :require_login, only: %i[new create]
 
   def new
-    @movie_title = params[:movie_title]
-    @duration = params[:duration]
+    # @duration = params[:duration]
+    @movie = MovieFacade.find_movie(params[:id])
     @party = Party.new
   end
 
   def create
-    party = current_user.parties.new(party_params)
-    if params[:party][:attendees].nil?
-      flash[:error] = 'Error: Party must include friends.'
-      # some redirect here?
-    elsif params[:party][:duration] < params[] # << movie runtime?
-      flash[:error] = 'Error: Party duration must match or exceed movie length.'
-      # some redirect here?
-    elsif party.save
-      params[:party][:attendees].each do |attendee|
-        party.attendees.create(friend_id: attendee) if attendee != ''
-      end
-      redirect_to dashboard_path
+    new_party = current_user.parties.new(party_params)
+    if new_party && new_party.save
+      redirect_to :controller => 'attendees', :action => 'create', party_id: new_party.id, params: request.parameters
+    else
+      flash[:error] = new_party.errors.full_messages.to_sentence
     end
   end
 
   private
 
   def party_params
-    params.require(:party).permit(:movie_title, :duration, :day, :start_time)
+    params.require(:party).permit(:movie_title, :duration, :day, :start_time, :id)
   end
-
-  # for potential refactor
-  # def create_inviation(party)
-  # end
 end

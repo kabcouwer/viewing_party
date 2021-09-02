@@ -1,4 +1,6 @@
-<h1><%= @movie.title %></h1>
+<h1><%= @movie.title %></h1><aside><%= link_to "Create Viewing Party for #{@movie.title}", new_party_path(movie_title: @movie.title, id:@movie.id, duration: @movie.runtime) %>
+</aside><br>
+
 <div class="container">
   <div class="row">
     <div class="col-3">
@@ -13,14 +15,17 @@
   </div>
 </div>
 <hr>
+        
 <h4>Summary</h4>
 <p><%= @movie.summary %></p>
 <hr>
+        
 <h4>Cast</h4>
 <% @movie.cast.each do |cast| %>
   <p><%= cast %></p>
 <% end %>
 <hr>
+        
 <h4><%= @movie.reviews.count %> Reviews</h4>
 <% @movie.reviews.each do |review| %>
   <h5><%= review[:author] %></h5>
