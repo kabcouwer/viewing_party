@@ -1,0 +1,115 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.themoviedb.org/3/search/movie?api_key=fd5e3ca81314005137fc3ebb81c91437&page=1&query=Codependent%20Lesbian%20Space%20Alien%20Seeks%20Same
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.7.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 02 Sep 2021 01:50:33 GMT
+      Server:
+      - openresty
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, DELETE, OPTIONS
+      Access-Control-Expose-Headers:
+      - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After,
+        Content-Length, Content-Range
+      Cache-Control:
+      - public, max-age=600
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 73724c215d7e98456c16352cf31e499c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DFW55-C3
+      X-Amz-Cf-Id:
+      - Z3DeagIprQAuRuallO6G1_YNP3N63rLf66S2viilDQ3RSU7TWcMBVA==
+      Age:
+      - '212'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"page":1,"results":[{"adult":false,"backdrop_path":null,"genre_ids":[35,10749,878],"id":105538,"original_language":"en","original_title":"Codependent
+        Lesbian Space Alien Seeks Same","overview":"The adventures of lesbian space
+        aliens on the planet Earth, and the story of the romance between Jane, a shy
+        greeting card store employee, and Zoinx, the woman Jane does not realize is
+        from outer-space. Meanwhile, two government agents, or ''Men In Black,'' are
+        closely tracking Jane and the aliens while harboring their own secrets.","popularity":2.549,"poster_path":"/5zxtGLnd87j6cQZlFjnRZzrrNLI.jpg","release_date":"2012-01-06","title":"Codependent
+        Lesbian Space Alien Seeks Same","video":false,"vote_average":4.8,"vote_count":6}],"total_pages":1,"total_results":1}'
+  recorded_at: Thu, 02 Sep 2021 01:54:05 GMT
+- request:
+    method: get
+    uri: https://api.themoviedb.org/3/search/movie?api_key=fd5e3ca81314005137fc3ebb81c91437&page=2&query=Codependent%20Lesbian%20Space%20Alien%20Seeks%20Same
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.7.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 02 Sep 2021 01:50:33 GMT
+      Server:
+      - openresty
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, DELETE, OPTIONS
+      Access-Control-Expose-Headers:
+      - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After,
+        Content-Length, Content-Range
+      Cache-Control:
+      - public, max-age=600
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 a7a72b1a5037a2bd41872d67061b2f5a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DFW55-C3
+      X-Amz-Cf-Id:
+      - 1Nk5RVLXUG0onYsSKDy31SV4WN2My8G04X2z-q8wIqLtFELIkqNmfw==
+      Age:
+      - '212'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"page":2,"results":[],"total_pages":1,"total_results":1}'
+  recorded_at: Thu, 02 Sep 2021 01:54:05 GMT
+recorded_with: VCR 6.0.0

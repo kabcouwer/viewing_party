@@ -26,7 +26,7 @@ describe MovieService do
         response_page_2 = MovieService.movie_search(query, 2)
         response = response_page_1 + response_page_2
         title1 = '22 vs. Earth'
-        title2 = 'Asteroid vs Earth'
+        title2 = "Daleks' Invasion Earth: 2150 A.D."
 
         expect(response).to be_an(Array)
         expect(response.count).to eq(40)

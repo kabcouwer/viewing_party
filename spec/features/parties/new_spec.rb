@@ -28,7 +28,7 @@ RSpec.describe "New Viewing Party" do
       end
     end
 
-    it 'dislays a form to create a party to view selected movie' do
+    xit 'dislays a form to create a party to view selected movie' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
 
       VCR.use_cassette('find_jurassic_park_details') do
@@ -58,7 +58,7 @@ RSpec.describe "New Viewing Party" do
         within "#friend-#{@user4.id}" do
           check("party[attendees[#{@user4.id}]]")
         end
-        
+
         expect(page).to have_button('Create Party')
 
         click_on('Create Party')

@@ -7,7 +7,7 @@ RSpec.describe 'MoviesFacade' do
       id1 = 19404
       title1 = 'Dilwale Dulhania Le Jayenge'
       rating1 = 8.8
-      title2 = "One Flew Over the Cuckoo's Nest"
+      title2 = "Fight Club"
 
       expect(response).to be_an(Array)
       expect(response.first).to be_a(Movie)
@@ -26,7 +26,7 @@ RSpec.describe 'MoviesFacade' do
       id1 = 811367
       rating1 = 7.2
       title1 = '22 vs. Earth'
-      title2 = 'Asteroid vs Earth'
+      title2 = "Daleks' Invasion Earth: 2150 A.D."
 
       expect(response).to be_an(Array)
       expect(response.count).to eq(40)
