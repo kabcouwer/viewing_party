@@ -1,12 +1,16 @@
-<%= form_with model: @user, url: registration_path, local: true do |form| %>
-  <%= form.label :username, 'Username:' %>
-  <%= form.text_field :username %>
-  <%= form.label :email, 'Email address:' %>
-  <%= form.text_field :email %>
-  <%= form.label :password, 'Password:' %>
-  <%= form.text_field :password %>
-  <%= form.label :password_confirmation, 'Please confirm the password:' %>
-  <%= form.text_field :password_confirmation %>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Welcome to Viewing Party!</h1>
+      <p class="lead text-muted">Please Register for an Account.</p>
+      <%= bootstrap_form_with model: @user, url: registration_path, local: true do |form| %>
+        <%= form.text_field :username, label: 'Enter Username:' %>
+        <%= form.email_field :email, label: 'Enter Email Address' %>
+        <%= form.password_field :password, label: 'Enter Password' %>
+        <%= form.password_field :password_confirmation, label: 'Please Re-enter Password', help: "Must be at least 6 characters long" %>
 
-  <%= form.submit 'Register' %>
-<% end %>
+        <%= form.submit 'Register' %>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -1,6 +1,8 @@
 class FriendshipsController < ApplicationController
+  before_action :require_login, only: %i[new create]
+
   def new
-    @friendship = Friendship.new
+    # @friendship = Friendship.new
   end
 
   def create

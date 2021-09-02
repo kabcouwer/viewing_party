@@ -1,8 +1,16 @@
-<%= button_to "Find Top Rated Movies", movies_path, method: :get %>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <%= button_to "Find Top Rated Movies", movies_path, method: :get, class: "btn btn-secondary" %>
+      <br>
+      <h3>OR</h3>
+      <br>
+      <h2>Search by movie title:</h2>
+      <%= bootstrap_form_with url: movies_path, method: :get, local: true do |form| %>
+        <%= form.text_field :movie_search, hide_label: true, placeholder: "Search by movie title" %>
 
-<h2>Search by movie title:</h2>
-<%= form_with url: movies_path, method: :get, local: true do |form| %>
-  <%= form.label :movie_search %>
-  <%= form.text_field :movie_search %>
-  <%= form.submit 'Find Movies' %>
-<% end %>
+        <%= form.submit 'Find Movies' %>
+        <% end %>
+    </div>
+  </div>
+</section>

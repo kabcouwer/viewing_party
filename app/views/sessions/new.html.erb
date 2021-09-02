@@ -1,8 +1,13 @@
-<%= form_with model: @user, url: login_path, local: true do |form| %>
-  <%= form.label :email, 'Email address:' %>
-  <%= form.text_field :email %>
-  <%= form.label :password, 'Password:' %>
-  <%= form.text_field :password %>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+    <h1 class="fw-light">So Close! Try Again &#128526</h1>
+      <%= bootstrap_form_with model: @user, url: login_path, local: true do |form| %>
+        <%= form.email_field :email, label: 'Email address:' %>
+        <%= form.password_field :password, label: 'Password:', help: "Must be at least 6 characters long" %>
 
-  <%= form.submit 'Log In' %>
-<% end %>
+        <%= form.submit 'Log In' %>
+      <% end %>
+    </div>
+  </div>
+</section>

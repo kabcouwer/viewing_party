@@ -1,4 +1,5 @@
 class DiscoverController < ApplicationController
-  def index
-  end
+  before_action :require_login, only: [:index]
+
+  def index; end
 end

@@ -4,7 +4,7 @@ RSpec.describe 'Log in Page' do
   before :each do
     @email = 'ex@dev.com'
     @username = 'bill_nye_science_guy'
-    @password = 'test'
+    @password = 'testing123'
 
     @user = User.create!(email: @email,
                         username: @username,
@@ -66,7 +66,17 @@ RSpec.describe 'Log in Page' do
 
     it 'errors out with incorrect password -  edgecase' do
       fill_in 'email', with: @email
-      fill_in 'password', with: 'teST'
+      fill_in 'password', with: 'teSTINg123'
+
+      click_on('Log In')
+
+      expect(current_path).to eq(login_path)
+      expect(page).to have_content('Sorry, your credentials are invalid. Try Again.')
+    end
+
+    it 'errors out with blank password' do
+      fill_in 'email', with: @email
+      fill_in 'password', with: ''
 
       click_on('Log In')
 
